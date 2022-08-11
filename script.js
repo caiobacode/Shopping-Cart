@@ -1,4 +1,5 @@
-const itens = document.querySelector('.items')
+const itens = document.querySelector('.items');
+const cart = document.querySelector('.cart__items');
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -13,6 +14,19 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
+const createCartItemElement = ({ sku, name, salePrice }) => {
+  const li = document.createElement('li');
+  li.className = 'cart__item';
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+  return li;
+};
+
+const addToCart = async (id) => {
+  const item = await fetchItem(id);
+  const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
+  cart.appendChild(createCartItemElement(finalProduct));
+};
+
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
@@ -20,7 +34,11 @@ const createProductItemElement = ({ sku, name, image }) => {
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
-  section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+  const button = (createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
+  button.addEventListener('click', () => {
+    addToCart(sku);
+  });
+  section.appendChild(button);
 
   return section;
 };
@@ -31,16 +49,8 @@ const cartItemClickListener = (event) => {
   // coloque seu código aqui
 };
 
-const createCartItemElement = ({ sku, name, salePrice }) => {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
-  return li;
-};
-
-const addToList = async () => {
-  const obj = await fetchProducts('computador');
+const addToList = async (search) => {
+  const obj = await fetchProducts(search);
   const res = obj.results;
   Object.keys(res).forEach((i) => {
     const product = { sku: res[i].id, name: res[i].title, image: res[i].thumbnail };
@@ -50,5 +60,5 @@ const addToList = async () => {
 };
 
 window.onload = () => {
-  addToList();
+  addToList('computador');
 };
