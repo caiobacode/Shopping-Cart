@@ -1,3 +1,4 @@
+const itens = document.querySelector('.items')
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -38,4 +39,16 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => { };
+const addToList = async () => {
+  const obj = await fetchProducts('computador');
+  const res = obj.results;
+  Object.keys(res).forEach((i) => {
+    const product = { sku: res[i].id, name: res[i].title, image: res[i].thumbnail };
+    const newItem = createProductItemElement(product);
+    itens.appendChild(newItem);
+  });
+};
+
+window.onload = () => {
+  addToList();
+};
