@@ -24,19 +24,23 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 const addToCart = async (id) => {
   const item = await fetchItem(id);
   const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
-  cart.appendChild(createCartItemElement(finalProduct));
+  const append = createCartItemElement(finalProduct);
+  cart.appendChild(append);
+  append.addEventListener('click', () => {
+    cart.removeChild(append);
+  });
 };
 
 const createProductItemElement = ({ sku, name, image }) => {
   const section = document.createElement('section');
   section.className = 'item';
-
   section.appendChild(createCustomElement('span', 'item__sku', sku));
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   const button = (createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
   button.addEventListener('click', () => {
     addToCart(sku);
+    removeCart();
   });
   section.appendChild(button);
 
