@@ -40,7 +40,6 @@ const createProductItemElement = ({ sku, name, image }) => {
   const button = (createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
   button.addEventListener('click', () => {
     addToCart(sku);
-    removeCart();
   });
   section.appendChild(button);
 
