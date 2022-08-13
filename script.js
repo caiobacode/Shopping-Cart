@@ -28,11 +28,11 @@ const price = () => {
   const nume = Math.trunc(red);
   let n = red.toFixed(2);
   const n2 = red.toFixed(1);
-  if (red - nume === 0) {
-    n = nume;
-  }
   if (n - n2 === 0) {
     n = n2;
+  }
+  if (red - nume === 0) {
+    n = nume;
   }
   let text = `${n}`;
   if (red === 0 || red < 0) {
