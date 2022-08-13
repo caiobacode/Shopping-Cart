@@ -24,10 +24,10 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 const price = () => {
-  const red = Math.round(total) - 1;
-  let text = `Total price: R$ ${red},99`;
+  const red = Math.round(total);
+  let text = `${red}`;
   if (red === -1) {
-    text = 'Total price: R$ 0,00';
+    text = '0,00';
   }
   const element = document.querySelector('.total-price');
   element.innerText = (text);
