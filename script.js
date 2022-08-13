@@ -62,7 +62,7 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
-const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+const getSkuFromProductItem = (it) => it.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
   // coloque seu código aqui
