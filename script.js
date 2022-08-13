@@ -24,9 +24,9 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 const price = () => {
-  const red = Math.round(total);
+  const red = total.toFixed(2);
   let text = `${red}`;
-  if (red === -1) {
+  if (red === 0) {
     text = '0,00';
   }
   const element = document.querySelector('.total-price');
