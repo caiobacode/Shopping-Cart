@@ -31,7 +31,7 @@ const price = () => {
     n = nume;
   }
   let text = `${n}`;
-  if (red === 0 && red < 0) {
+  if (total === 0 && total < 0) {
     text = '0,00';
   }
   const element = document.querySelector('.total-price');
