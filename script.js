@@ -43,7 +43,10 @@ const price = () => {
 };
 
 const addToCart = async (id, hasSaved) => {
+  const loadingText = createCustomElement('span', 'loading', '...Carregando');
+  if (hasSaved) cart.appendChild(loadingText);
   const item = await fetchItem(id);
+  if (hasSaved) cart.removeChild(loadingText);
   const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
   if (hasSaved) saveCartItems(finalProduct);
   const append = createCartItemElement(finalProduct);
@@ -79,7 +82,10 @@ const cartItemClickListener = (event) => {
 };
 
 const addToList = async (search) => {
+  const loadingText = createCustomElement('span', 'loading', '...Carregando');
+  itens.appendChild(loadingText);
   const obj = await fetchProducts(search);
+  itens.removeChild(loadingText);
   console.log(obj.results);
   const res = obj.results;
   Object.keys(res).forEach((i) => {
@@ -94,8 +100,6 @@ const getOldCart = () => {
   storage.map((i) => addToCart(i.sku, false));
 };
 
-getOldCart();
-
 function clean() {
   total = 0;
   const alvo = cart;
@@ -105,4 +109,5 @@ function clean() {
 
 window.onload = () => {
   addToList('computador');
+  getOldCart();
 };
