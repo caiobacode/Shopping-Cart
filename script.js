@@ -42,9 +42,10 @@ const price = () => {
   element.innerText = (text);
 };
 
-const addToCart = async (id) => {
+const addToCart = async (id, hasSaved) => {
   const item = await fetchItem(id);
   const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
+  if (hasSaved) saveCartItems(finalProduct);
   const append = createCartItemElement(finalProduct);
   cart.appendChild(append);
   total += item.price;
@@ -64,7 +65,7 @@ const createProductItemElement = ({ sku, name, image }) => {
   section.appendChild(createProductImageElement(image));
   const button = (createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
   button.addEventListener('click', () => {
-    addToCart(sku);
+    addToCart(sku, true);
   });
   section.appendChild(button);
 
@@ -87,6 +88,13 @@ const addToList = async (search) => {
     itens.appendChild(newItem);
   });
 };
+
+const getOldCart = () => {
+  const storage = getSavedCartItems();
+  storage.map((i) => addToCart(i.sku, false));
+};
+
+getOldCart();
 
 function clean() {
   total = 0;
