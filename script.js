@@ -79,6 +79,7 @@ const cartItemClickListener = (event) => {
 
 const addToList = async (search) => {
   const obj = await fetchProducts(search);
+  console.log(obj.results);
   const res = obj.results;
   Object.keys(res).forEach((i) => {
     const product = { sku: res[i].id, name: res[i].title, image: res[i].thumbnail };
