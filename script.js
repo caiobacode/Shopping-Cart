@@ -43,7 +43,7 @@ const price = () => {
 };
 
 const addToCart = async (id, hasSaved) => {
-  const loadingText = createCustomElement('span', 'loading', '...Carregando');
+  const loadingText = createCustomElement('span', 'loading', 'carregando...');
   if (hasSaved) cart.appendChild(loadingText);
   const item = await fetchItem(id);
   if (hasSaved) cart.removeChild(loadingText);
@@ -82,7 +82,7 @@ const cartItemClickListener = (event) => {
 };
 
 const addToList = async (search) => {
-  const loadingText = createCustomElement('span', 'loading', '...Carregando');
+  const loadingText = createCustomElement('span', 'loading', 'carregando...');
   itens.appendChild(loadingText);
   const obj = await fetchProducts(search);
   itens.removeChild(loadingText);
