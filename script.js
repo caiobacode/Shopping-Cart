@@ -43,12 +43,14 @@ const price = () => {
 };
 
 const addToCart = async (id, hasSaved) => {
+  const oldStorage = localStorage.getItem('cartItems') 
+  ? JSON.parse(localStorage.getItem('cartItems')) : [];
   const loadingText = createCustomElement('span', 'loading', 'carregando...');
   if (hasSaved) cart.appendChild(loadingText);
   const item = await fetchItem(id);
   if (hasSaved) cart.removeChild(loadingText);
   const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
-  if (hasSaved) saveCartItems(finalProduct);
+  if (hasSaved) saveCartItems(finalProduct, oldStorage);
   const append = createCartItemElement(finalProduct);
   cart.appendChild(append);
   total += item.price;

@@ -1,12 +1,9 @@
-const saveCartItems = async (item) => {
-  const oldStorage = localStorage.getItem('cartItems') 
-  ? JSON.parse(localStorage.getItem('cartItems')) : [];
+const saveCartItems = async (item, oldStorage) => {
   console.log(oldStorage);
-  const newStorage = [
+  const newStorage = oldStorage ? [
     ...oldStorage,
     item,
-  ];
-  console.log(newStorage);
+  ] : [item];
   localStorage.setItem('cartItems', JSON.stringify(newStorage));
 };
 
