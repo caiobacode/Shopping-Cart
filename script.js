@@ -1,6 +1,15 @@
 const itens = document.querySelector('.items');
 const cart = document.querySelector('.cart__items');
+const searchBtn = document.querySelector('.input-btn')
+searchBtn.addEventListener('click', () => {
+  const inputValue = document.querySelector('.product-input')
+  itens.innerHTML = ''
+  addToList(inputValue.value)
+})
 let total = 0;
+
+
+
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -44,7 +53,7 @@ const price = () => {
   }
   let text = `R$: ${n}`;
   if (red === 0 || red < 0) {
-    text = '0,00';
+    text = 'R$: 0,00';
   }
   const element = document.querySelector('.total-price');
   element.innerText = (text);
@@ -122,6 +131,6 @@ function clean() {
 }
 
 window.onload = () => {
-  addToList('computador');
+  addToList('Computadores');
   getOldCart();
 };
