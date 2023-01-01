@@ -1,5 +1,4 @@
 const saveCartItems = async (item, oldStorage) => {
-  console.log(oldStorage);
   const newStorage = oldStorage ? [
     ...oldStorage,
     item,

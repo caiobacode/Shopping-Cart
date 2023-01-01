@@ -16,10 +16,18 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
-const createCartItemElement = ({ sku, name, salePrice }) => {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
+const createCartItemElement = ({ sku, name, salePrice, img }) => {
+  const li = document.createElement('div');
+  li.innerHTML = `
+  <div class='cart__item'>
+    <div class='only-text'> 
+    <p class='cartitem-name'>${name}</p> 
+    <p class='price'>R$: ${salePrice}</p> 
+    <span class='id-item'>ID: ${sku}</span> 
+    </div>
+    <img class='item-cart-img alt='cart-item-img' src=${img} />
+  </div>
+  `
   return li;
 };
 
@@ -34,7 +42,7 @@ const price = () => {
   if (red - nume === 0) {
     n = nume;
   }
-  let text = `${n}`;
+  let text = `R$: ${n}`;
   if (red === 0 || red < 0) {
     text = '0,00';
   }
@@ -49,13 +57,17 @@ const addToCart = async (id, hasSaved) => {
   if (hasSaved) cart.appendChild(loadingText);
   const item = await fetchItem(id);
   if (hasSaved) cart.removeChild(loadingText);
-  const finalProduct = { sku: item.id, name: item.title, salePrice: item.price };
+  const finalProduct = { sku: item.id, name: item.title, salePrice: item.price, img: item.thumbnail };
   if (hasSaved) saveCartItems(finalProduct, oldStorage);
   const append = createCartItemElement(finalProduct);
+  console.log(append);
   cart.appendChild(append);
   total += item.price;
   price();
   append.addEventListener('click', async () => {
+    const atualStorage = localStorage.getItem('cartItems')
+    const newStorage = JSON.parse(atualStorage).filter((i) => i.sku !== finalProduct.sku)
+    localStorage.setItem('cartItems', JSON.stringify(newStorage));
     cart.removeChild(append);
     total -= item.price;
     price();
@@ -88,7 +100,6 @@ const addToList = async (search) => {
   itens.appendChild(loadingText);
   const obj = await fetchProducts(search);
   itens.removeChild(loadingText);
-  console.log(obj.results);
   const res = obj.results;
   Object.keys(res).forEach((i) => {
     const product = { sku: res[i].id, name: res[i].title, image: res[i].thumbnail };
@@ -106,6 +117,7 @@ function clean() {
   total = 0;
   const alvo = cart;
   alvo.innerText = '';
+  localStorage.setItem('cartItems', [])
   price();
 }
 
