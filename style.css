@@ -496,6 +496,9 @@ body {
   .product-input {
     width: 120px;
   }
+  .total-price {
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 335px) {
@@ -523,7 +526,7 @@ body {
     width: 120px;
   }
   .total-price {
-    font-size: 16px;
+    font-size: 12px;
   }
   .title {
     font-size: 10px;
@@ -533,5 +536,11 @@ body {
   }
   .input-btn {
     width: 80px;
+  }
+}
+
+@media (max-height: 750px) {
+  .cart .cart__items {
+    height: 320px;
   }
 }
