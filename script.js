@@ -130,6 +130,6 @@ function clean() {
 }
 
 window.onload = () => {
-  addToList('Computadores');
+  addToList('Celulares');
   getOldCart();
 };

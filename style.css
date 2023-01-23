@@ -7,11 +7,11 @@
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: rgb(3, 52, 45);
+  background-color: #471f37;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #14eb9c;
+  background-color: #7E3661;
   border-radius: 10px;
 }
 
@@ -26,7 +26,7 @@ body {
 
 .header {
   position: relative;
-  background-color: rgb(3, 52, 45);
+  background-color: #471f37;
   display: flex;
   align-items: center;
   width: 100%;
@@ -54,12 +54,12 @@ body {
   width: 120px;
   font-size: 20px;
   color: white;
-  background-color: rgb(5, 52, 219);
+  background-color: #EB9532;
   transition: 0.2s ease-in-out;
 }
 
 .input-btn:hover {
-  background-color: #0080ff;
+  background-color: #a25e10;
   transform: scale(1.05);
 }
 
@@ -78,7 +78,7 @@ body {
   position: relative;
   display: flex;
   align-items: center;
-  background-color: rgb(10, 118, 79);
+  background-color: #7E3661;
   width: 40%;
   height: 100%;
   margin-left: 30px;
@@ -95,7 +95,7 @@ body {
   right: 61.5%;
   width: 39.5%;
   height: 15px;
-  background: rgb(10, 118, 79);
+  background: #7E3661;
   transform: skew(-45deg);
   z-index: 0;
 }
@@ -107,7 +107,7 @@ body {
   right: 61.5%;
   width: 39.5%;
   height: 15px;
-  background: rgb(10, 118, 79);
+  background: #7E3661;
   transform: skew(45deg);
   z-index: 0;
 }
@@ -170,7 +170,7 @@ body {
 }
 
 .item .item__add {
-  background-color: rgb(5, 52, 219);
+  background-color: #EB9532;
   border: 0;
   cursor: pointer;
   margin: 0;
@@ -180,7 +180,7 @@ body {
 }
 
 .item .item__add:hover {
-  background-color: #0080ff;
+  background-color: #a25e10;
 }
 
 .cart {
@@ -253,7 +253,7 @@ body {
   height: 500px;
   padding: 25px;
   overflow-y: scroll;
-  border-bottom: 2px solid rgb(3, 52, 45);
+  border-bottom: 2px solid #471f37;
 }
 
 .empty-cart {
@@ -261,7 +261,7 @@ body {
   width: 190px;
   height: 55px;
   font-size: 18px;
-  border: 2px solid rgb(5, 52, 219);
+  border: 2px solid #EB9532;
   border-radius: 15px;
   background-color: rgb(249, 249, 246);
   transition: 0.2s ease-in-out;
