@@ -109,6 +109,7 @@ const addToList = async (search) => {
   const obj = await fetchProducts(search);
   itens.removeChild(loadingText);
   const res = obj.results;
+  console.log('commit teste');
   Object.keys(res).forEach((i) => {
     const product = { sku: res[i].id, name: res[i].title, image: res[i].thumbnail };
     const newItem = createProductItemElement(product);
